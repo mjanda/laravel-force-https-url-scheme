@@ -34,7 +34,7 @@ class ForceHttpsUrlScheme implements Middleware
      */
     public function handle($request, Closure $next)
     {
-        if ($this->app->environment() === 'production') {
+        if ($this->app->environment() !== 'local') {
             // for Proxies
             Request::setTrustedProxies([$request->getClientIp()]);
             if (!$request->isSecure()) {
